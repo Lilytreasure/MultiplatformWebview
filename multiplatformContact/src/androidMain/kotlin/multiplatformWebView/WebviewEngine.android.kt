@@ -1,12 +1,16 @@
 package multiplatformWebView
 
+import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
+import android.os.Build
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.rememberScrollState
@@ -22,6 +26,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 actual fun WebViewEngine(
     htmlContent: String,
@@ -38,29 +43,41 @@ actual fun WebViewEngine(
             modifier = Modifier.fillMaxWidth(),
             factory = { context ->
                 WebView(context).apply {
-                    // Enable WebView debugging for development
                     onCreated()
-                    //Todo---- remove debugger when publishing
-                    WebView.setWebContentsDebuggingEnabled(true)
-
                     scrollBarStyle = View.SCROLLBARS_OUTSIDE_OVERLAY
                     setBackgroundColor(color)
                     layoutParams = ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT
                     )
-                    // Enable horizontal scrolling and adjust settings
                     settings.apply {
                         loadWithOverviewMode = true
                         useWideViewPort = true
                         layoutAlgorithm = WebSettings.LayoutAlgorithm.NORMAL
                         javaScriptEnabled = true // Enable JavaScript if needed
                         domStorageEnabled = true // Enable DOM storage for complex pages
-                        mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW // Allow mixed content
-                        userAgentString = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+                        mixedContentMode =
+                            WebSettings.MIXED_CONTENT_ALWAYS_ALLOW // Allow mixed content
+                        userAgentString =
+                            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
                         setSupportZoom(true) // Enable zoom support
-                        builtInZoomControls = true // Enable built-in zoom controls (e.g., pinch-to-zoom)
+                        builtInZoomControls =
+                            true // Enable built-in zoom controls (e.g., pinch-to-zoom)
                         displayZoomControls = false
+                        setSupportMultipleWindows(true)
+                        allowContentAccess = true
+                        allowFileAccess = true
+                        blockNetworkImage = false
+                        blockNetworkLoads = false
+                        databaseEnabled = true
+                        loadsImagesAutomatically = true
+                        javaScriptCanOpenWindowsAutomatically = true
+                        mediaPlaybackRequiresUserGesture = false
+                        setGeolocationEnabled(true)
+                        safeBrowsingEnabled = true
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                            isAlgorithmicDarkeningAllowed = true
+                        }
                     }
 
                     webViewClient = object : WebViewClient() {
@@ -71,6 +88,7 @@ actual fun WebViewEngine(
                         ) {
                             isLoading(true)
                         }
+
                         override fun onPageFinished(view: WebView?, url: String?) {
                             view?.scrollTo(view.contentHeight, 0)
                             isLoadingFinished = true
@@ -81,14 +99,26 @@ actual fun WebViewEngine(
                             view: WebView?,
                             request: WebResourceRequest?
                         ): Boolean {
-                            return if (request?.url.toString().contains("jpg") ||
-                                request?.url.toString().contains("png") ||
-                                request?.url.toString().contains("attachment_id")
-                            ) {
-                                true
-                            } else {
-                                onUrlClicked(request?.url.toString())
-                                true
+                            val url = request?.url.toString()
+
+                            return when {
+                                url.contains("jpg") || url.contains("png") || url.contains("attachment_id") -> {
+                                    true
+                                }
+
+                                url.startsWith("mailto:") -> {
+                                    val emailIntent = Intent(Intent.ACTION_SENDTO).apply {
+                                        data = Uri.parse(url)
+                                    }
+                                    context.startActivity(emailIntent)
+                                    true
+                                }
+
+                                else -> {
+                                    onUrlClicked(url)
+                                    view?.loadUrl(url)
+                                    true
+                                }
                             }
                         }
                     }
