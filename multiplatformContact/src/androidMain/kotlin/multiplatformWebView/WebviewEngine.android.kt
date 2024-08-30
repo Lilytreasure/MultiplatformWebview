@@ -25,6 +25,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 
+//Todo--allow deep linking to access other apps
+//open other urls and support adaptive dark theme
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
