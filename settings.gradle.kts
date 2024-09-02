@@ -1,4 +1,4 @@
-rootProject.name = "MultiplatformContactsLib"
+rootProject.name = "MultiplatformWebViewLib"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
@@ -29,7 +29,7 @@ dependencyResolutionManagement {
     }
 }
 
-include("multiplatformContact")
+include("multiplatformWebView")
 include(":sample:android")
 include(":sample:common")
 

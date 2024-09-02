@@ -56,6 +56,6 @@ dependencies {
     implementation(compose.material3)
     implementation(libs.core.ktx)
     implementation(project(":sample:common"))
-    implementation(project(":multiplatformContact"))
+    implementation(project(":multiplatformWebView"))
 
 }
