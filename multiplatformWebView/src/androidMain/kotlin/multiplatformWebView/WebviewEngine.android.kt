@@ -32,7 +32,7 @@ import androidx.core.content.ContextCompat
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 actual fun WebViewEngine(
-    htmlContent: String,
+    url: String,
     isLoading: (isLoading: Boolean) -> Unit,
     onUrlClicked: (url: String) -> Unit,
     onCreated: () -> Unit,
@@ -128,7 +128,7 @@ actual fun WebViewEngine(
                 }
             },
             update = { webView ->
-                webView.loadUrl(htmlContent)
+                webView.loadUrl(url)
             },
             onRelease = {
                 onDispose()

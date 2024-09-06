@@ -27,8 +27,6 @@ kotlin {
             implementation(libs.compose.ui.tooling.preview)
             api(libs.androidx.activity.compose)
             api(libs.androidx.appcompat)
-            //phone
-            implementation("com.googlecode.libphonenumber:libphonenumber:8.2.0")
 
         }
         commonMain.dependencies {
@@ -57,20 +55,20 @@ android {
 mavenPublishing {
     coordinates(
         groupId = "io.github.lilytreasure",
-        artifactId = "multiplatformContacts",
+        artifactId = "multiplatformWebView",
         version = "1.0.1"
     )
 
     // Configure POM metadata for the published artifact
     pom {
-        name.set("MultiplatformContacts")
+        name.set("MultiplatformWebview")
         description.set(
             "Kotlin Multiplatform library for Compose Multiplatform, " +
-                    "designed for seamless integration of an contacts picker feature in iOS " +
+                    "designed for seamless integration of native WebView  in iOS " +
                     "and Android applications.",
         )
         inceptionYear.set("2024")
-        url.set("hhttps://github.com/Lilytreasure/MultiplatformContacts")
+        url.set("https://github.com/Lilytreasure/MultiplatformContacts")
 
         licenses {
             license {

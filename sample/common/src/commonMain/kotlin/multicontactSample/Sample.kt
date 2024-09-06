@@ -45,9 +45,8 @@ fun Sample() {
                     .windowInsetsPadding(WindowInsets.systemBars)
                     .windowInsetsPadding(WindowInsets.ime)
             ) {
-
                 WebViewEngine(
-                    htmlContent = "https://github.com/Lilytreasure",
+                    url = "https://github.com/Lilytreasure",
                     isLoading = { loadDelegate ->
                         isLoadingDescription = loadDelegate
                     },

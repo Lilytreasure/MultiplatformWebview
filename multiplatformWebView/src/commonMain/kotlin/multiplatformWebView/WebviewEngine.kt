@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 
 @Composable
 expect fun WebViewEngine(
-    htmlContent: String,
+    url: String,
     isLoading: (isLoading: Boolean) -> Unit,
     onUrlClicked: (url: String) -> Unit,
     onCreated: () -> Unit,
