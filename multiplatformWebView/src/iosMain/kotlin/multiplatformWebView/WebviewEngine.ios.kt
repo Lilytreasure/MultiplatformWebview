@@ -22,6 +22,7 @@ import platform.WebKit.WKNavigation
 import platform.WebKit.WKNavigationAction
 import platform.WebKit.WKNavigationActionPolicy
 import platform.WebKit.WKNavigationDelegateProtocol
+import platform.WebKit.WKNavigationResponse
 import platform.WebKit.WKNavigationTypeLinkActivated
 import platform.WebKit.WKWebView
 import platform.darwin.NSObject
@@ -31,10 +32,12 @@ import platform.darwin.NSObject
 //open other urls and support adaptive dark theme
 //allow file download
 //location  data
+//Enable deep linking and opening other links
+//Enable file access and attachments
 @OptIn(ExperimentalForeignApi::class)
 @Composable
-actual fun WebViewEngine(
-    htmlContent: String,
+actual fun  WebViewEngine(
+    url: String,
     isLoading: (isLoading: Boolean) -> Unit,
     onUrlClicked: (url: String) -> Unit,
     onCreated: () -> Unit,
@@ -42,9 +45,9 @@ actual fun WebViewEngine(
 ) {
     val webView = remember { WKWebView() }
     val navigationDelegate = rememberWebViewDelegate(onUrlClicked, isLoading)
-    LaunchedEffect(htmlContent) {
+    LaunchedEffect( url) {
         webView.navigationDelegate = navigationDelegate
-        webView.loadRequest(NSURLRequest(NSURL(string = htmlContent)))
+        webView.loadRequest(NSURLRequest(NSURL(string =  url)))
     }
     UIKitView(
         modifier = Modifier
