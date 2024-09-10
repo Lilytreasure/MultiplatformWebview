@@ -10,6 +10,7 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.activity.compose.BackHandler
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,7 +28,9 @@ import androidx.core.content.ContextCompat
 
 //Todo--allow deep linking to access other apps
 //open other urls and support adaptive dark theme
-
+//Enable loading html  content
+//Enable adaptive loading
+//Show dowbload notification in webview download
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -41,6 +44,13 @@ actual fun WebViewEngine(
     val context = LocalContext.current
     val color = ContextCompat.getColor(context, androidx.core.R.color.notification_icon_bg_color)
     var isLoadingFinished by remember { mutableStateOf(false) }
+
+
+//    BackHandler(enabled = backEnabled) {
+//        webView?.goBack()
+//    }
+
+
     Box(modifier = Modifier.fillMaxWidth().verticalScroll(rememberScrollState())) {
         AndroidView(
             modifier = Modifier.fillMaxWidth(),
