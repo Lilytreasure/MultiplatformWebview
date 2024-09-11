@@ -44,13 +44,11 @@ actual fun WebViewEngine(
     val context = LocalContext.current
     val color = ContextCompat.getColor(context, androidx.core.R.color.notification_icon_bg_color)
     var isLoadingFinished by remember { mutableStateOf(false) }
-
-
-//    BackHandler(enabled = backEnabled) {
-//        webView?.goBack()
-//    }
-
-
+    var webView: WebView? = null
+    var backEnabled by remember { mutableStateOf(false) }
+    BackHandler(enabled = backEnabled) {
+        webView?.goBack()
+    }
     Box(modifier = Modifier.fillMaxWidth().verticalScroll(rememberScrollState())) {
         AndroidView(
             modifier = Modifier.fillMaxWidth(),
@@ -92,20 +90,22 @@ actual fun WebViewEngine(
                             isAlgorithmicDarkeningAllowed = true
                         }
                     }
-
                     webViewClient = object : WebViewClient() {
                         override fun onPageStarted(
                             view: WebView?,
                             url: String?,
                             favicon: Bitmap?
                         ) {
+                            backEnabled = view?.canGoBack() ?: false
                             isLoading(true)
+
                         }
 
                         override fun onPageFinished(view: WebView?, url: String?) {
                             view?.scrollTo(view.contentHeight, 0)
                             isLoadingFinished = true
                             isLoading(false)
+                            backEnabled = view?.canGoBack() == true
                         }
 
                         override fun shouldOverrideUrlLoading(
@@ -135,10 +135,12 @@ actual fun WebViewEngine(
                             }
                         }
                     }
+                    loadUrl(url)
+                    webView = this
                 }
             },
-            update = { webView ->
-                webView.loadUrl(url)
+            update = {
+                webView = it
             },
             onRelease = {
                 onDispose()
