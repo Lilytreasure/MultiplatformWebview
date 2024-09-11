@@ -3,20 +3,13 @@
 </p><br>
 
 <p align="center">
-👻 Multiplatform Contacts is a straight forward library used to get  Contacts in Android and iOS.
+👻 Multiplatform WebView is a straight forward library used to implement native WebView in Android and iOS.
 </p><br>
 
 ### sample iOS
 
-<p align="center">
-<img <img src="https://github.com/Lilytreasure/MultiplatformContacts/assets/78819932/d3150a0d-1578-4c29-9c59-7d8d83f3dd2e.gif?raw=true" width="268"/>
-</p>
 
 ### sample Android
-
-<p align="center">
-<img <img src="https://github.com/Lilytreasure/MultiplatformContacts/assets/78819932/472d2a66-acca-467a-aefc-b27cbd18b06a.gif?raw=true" width="268"/>
-</p>
 
 
 ### Gradle
