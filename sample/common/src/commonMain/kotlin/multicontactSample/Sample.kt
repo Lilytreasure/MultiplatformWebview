@@ -75,7 +75,7 @@ fun Sample() {
                     )
                 }
 
-                //Enabled dragging the dismissing button to not get in the way of the WebView content
+                 //Enabled dragging the dismissing button to not get in the way of the WebView content
                 IconButton(
                     onClick = {
                         // Handle onClick

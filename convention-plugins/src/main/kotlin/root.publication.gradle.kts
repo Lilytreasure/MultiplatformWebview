@@ -7,7 +7,7 @@ plugins {
 
 allprojects {
     group = "io.github.lilytreasure"
-    version = "0.0.2"
+    version = "1.0.1"
 }
 
 nexusPublishing {
