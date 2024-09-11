@@ -22,13 +22,13 @@ publishing {
 
         // Provide artifacts information required by Maven Central
         pom {
-            name.set("multiplatformContacts")
+            name.set("MultiplatformWebView")
             description.set(
                 "Kotlin Multiplatform library for Compose Multiplatform, " +
-                    "designed for seamless integration of an contacts picker feature in iOS " +
-                    "and Android applications.",
+                        "designed for seamless integration of native WebView  in iOS " +
+                        "and Android applications.",
             )
-            url.set("https://github.com/Lilytreasure/MultiplatformContacts")
+            url.set("https://github.com/Lilytreasure/MultiplatformWebview")
 
             licenses {
                 license {
@@ -45,11 +45,11 @@ publishing {
             }
             issueManagement {
                 system.set("Github")
-                url.set("https://github.com/Lilytreasure/MultiplatformContacts/issues")
+                url.set("https://github.com/Lilytreasure/MultiplatformWebview/issues")
             }
             scm {
-                connection.set("https://github.com/Lilytreasure/MultiplatformContacts.git")
-                url.set("https://github.com/Lilytreasure/MultiplatformContacts")
+                connection.set("https://github.com/Lilytreasure/MultiplatformWebview.git")
+                url.set("https://github.com/Lilytreasure/MultiplatformWebview")
             }
         }
     }

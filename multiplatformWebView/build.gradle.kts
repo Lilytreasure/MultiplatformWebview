@@ -61,14 +61,14 @@ mavenPublishing {
 
     // Configure POM metadata for the published artifact
     pom {
-        name.set("MultiplatformWebview")
+        name.set("MultiplatformWebView")
         description.set(
             "Kotlin Multiplatform library for Compose Multiplatform, " +
                     "designed for seamless integration of native WebView  in iOS " +
                     "and Android applications.",
         )
         inceptionYear.set("2024")
-        url.set("https://github.com/Lilytreasure/MultiplatformContacts")
+        url.set("https://github.com/Lilytreasure/MultiplatformWebview")
 
         licenses {
             license {
@@ -88,8 +88,8 @@ mavenPublishing {
 
         // Specify SCM information
         scm {
-            connection.set("https://github.com/Lilytreasure/MultiplatformContacts.git")
-            url.set("https://github.com/Lilytreasure/MultiplatformContacts")
+            connection.set("https://github.com/Lilytreasure/MultiplatformWebview.git")
+            url.set("https://github.com/Lilytreasure/MultiplatformWebview")
         }
     }
 
