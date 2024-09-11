@@ -53,7 +53,7 @@ fun Sample() {
                     .windowInsetsPadding(WindowInsets.ime)
             ) {
                 WebViewEngine(
-                    url = "https://install.appcenter.ms/users/prestadeveloperke-gmail.com/apps/presta-development/distribution_groups/production",
+                    url = "https://github.com/Lilytreasure",
                     isLoading = { loadDelegate ->
                         isLoadingDescription = loadDelegate
                     },
@@ -74,6 +74,8 @@ fun Sample() {
                             .align(Alignment.Center)
                     )
                 }
+
+                //Enabled dragging the dismissing button to not get in the way of the WebView content
                 IconButton(
                     onClick = {
                         // Handle onClick
@@ -88,7 +90,7 @@ fun Sample() {
                         .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
                         .pointerInput(Unit) {
                             detectDragGestures { change, dragAmount ->
-                                change.consume() // Consume the gesture to prevent interference with other gestures
+                                change.consume()
                                 offsetX += dragAmount.x
                                 offsetY += dragAmount.y
                             }

@@ -25,13 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
-
-//Todo--allow deep linking to access other apps
-//open other urls and support adaptive dark theme
-//Enable loading html  content
-//Enable adaptive loading
-//Show dowbload notification in webview download
-
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 actual fun WebViewEngine(
