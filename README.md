@@ -18,14 +18,6 @@
 <img <img src="https://github.com/Lilytreasure/MultiplatformContacts/assets/78819932/472d2a66-acca-467a-aefc-b27cbd18b06a.gif?raw=true" width="268"/>
 </p>
 
-### On Android
-
-Add the following on your Manifest file:
-
-```xml
-
-<uses-permission android:name="android.permission.READ_CONTACTS" />
-```
 
 ### Gradle
 
