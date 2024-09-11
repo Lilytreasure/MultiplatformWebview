@@ -26,13 +26,6 @@ import platform.WebKit.WKNavigationTypeLinkActivated
 import platform.WebKit.WKWebView
 import platform.darwin.NSObject
 
-
-//Todo--allow deep linking to access other apps
-//open other urls and support adaptive dark theme
-//allow file download
-//location  data
-//Enable deep linking and opening other links
-//Enable file access and attachments
 @OptIn(ExperimentalForeignApi::class)
 @Composable
 actual fun  WebViewEngine(
@@ -47,6 +40,7 @@ actual fun  WebViewEngine(
     LaunchedEffect( url) {
         webView.navigationDelegate = navigationDelegate
         webView.loadRequest(NSURLRequest(NSURL(string =  url)))
+      
     }
     UIKitView(
         modifier = Modifier
