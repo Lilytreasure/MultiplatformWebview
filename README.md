@@ -6,6 +6,13 @@
 👻 Multiplatform WebView is a straight forward library used to implement native WebView in Android and iOS.
 </p><br>
 
+### On Android
+
+Add the following on your Manifest file:
+```xml
+   <uses-permission android:name="android.permission.INTERNET" />
+```
+
 ### sample iOS
 
 
