@@ -13,12 +13,6 @@ Add the following on your Manifest file:
    <uses-permission android:name="android.permission.INTERNET" />
 ```
 
-### sample iOS
-
-
-### sample Android
-
-
 ### Gradle
 
 You can add a dependency inside the `androidMain` or `commonMain` source set:
